@@ -17,7 +17,13 @@
 # Return the resulting string.
 def verbing(s):
   # +++your code here+++
-  return
+  if len(s) >=3:
+    result = s + 'ing'
+    if s[-3:] == 'ing':
+      result = s + 'ly'
+  else:
+    result = s
+  return result
 
 
 # E. not_bad
@@ -30,7 +36,23 @@ def verbing(s):
 # This dinner is good!
 def not_bad(s):
   # +++your code here+++
-  return
+  # return number sequence of `n` in `not` word
+  findnot = s.find('not') 
+  # return number sequence of `b` in `bad` word
+  findbad = s.find('bad') 
+
+  # must filled on three conditionals
+  # 1. s[findnot:findnot+3] == 'not'
+  #  mengecek kalo ada kata not
+  # 2. s[findbad:findbad+3] == 'bad'
+  #  menegcek ada kata bad gak
+  # 3. findnot < findbad
+  #  memastikan kalo urutan kata not lebih kecil (not berada di awal bad)
+  if (s[findnot:findnot+3] == 'not' and s[findbad:findbad+3] == 'bad' and findnot < findbad):
+    result = s[:findnot] + 'good' + s[findbad + 3:]
+  else:
+    result = s
+  return result
 
 
 # F. front_back
@@ -42,7 +64,27 @@ def not_bad(s):
 #  a-front + b-front + a-back + b-back
 def front_back(a, b):
   # +++your code here+++
-  return
+  # if string a is even
+  if len(a) % 2 == 0:
+    # slice from the middle
+    a_front = a[:(len(a)/2)]
+    a_back = a[(len(a)/2):]
+  else:
+    # string a is odd
+    # slice from the middle and plus one for odd
+    a_front = a[:(len(a)//2) + 1]
+    a_back = a[(len(a)//2) + 1:]
+
+  # string b even condition
+  if len(b) % 2 == 0:
+    b_front = b[:(len(b)/2)]
+    b_back = b[(len(b)/2):]
+    # odd condition
+  else:
+    b_front = b[:(len(b)//2) + 1]
+    b_back = b[(len(b)//2) + 1:]
+  result = a_front+b_front+a_back+b_back
+  return result
 
 
 # Simple provided test() function used in main() to print
