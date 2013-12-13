@@ -19,7 +19,7 @@ word2 count2
 ...
 
 Print the above list in order sorted by word (python will sort punctuation to
-come before letters -- that's fine). Store all the words as lowercase,
+come before lpythetters -- that's fine). Store all the words as lowercase,
 so 'The' and 'the' count as the same word.
 
 2. For the --topcount flag, implement a print_top(filename) which is similar
@@ -39,7 +39,30 @@ print_words() and print_top().
 
 import sys
 
-# +++your code here+++
+def split(s):
+  return s.split()
+
+# def justword(w):
+#   return w != '' and w != '\n'
+
+words = []
+def print_words(filename):
+  file = open(filename, 'r')
+  for line in file:
+    words.extend(split(line.lower()))
+  for index, s in enumerate(sorted(words)):
+    print '{0} {1}'.format(s,index+1)
+
+def print_top(filename):
+  file = open(filename, 'r')
+  for line in file:
+    words.extend(split(line.lower()))
+  
+  def countme(s):
+    return words.count(s)
+
+  for s in sorted(words, key=countme, reverse=True):
+    print s
 # Define print_words(filename) and print_top(filename) functions.
 # You could write a helper utility function that reads a file
 # and builds and returns a word/count dict for it.
